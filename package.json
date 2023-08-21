@@ -1,0 +1,10 @@
+{
+  "name": "@bytewriters/shared",
+  "version": "0.0.1",
+  "description": "Shared server/web utilities",
+  "main": "index",
+  "repository": "https://github.com/ByteWriters/shared",
+  "author": "J. Ouweneel (ByteWriters V.O.F)",
+  "license": "MIT",
+  "private": false
+}
