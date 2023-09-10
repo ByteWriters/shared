@@ -5,6 +5,16 @@ import { emitter } from '../../../server/src/lib/util/emitter';
 
 function mockPostgres () {
   const fakeEmitter = emitter();
+  // Single instance so setting up return values works
+  const tableInterface = {
+    name: '',
+    one: jest.fn(async () => ({})),
+    find: jest.fn(async () => ([])),
+    insert: jest.fn(async () => ({})),
+    update: jest.fn(async () => ({})),
+    upsert: jest.fn(async () => ({})),
+    delete: jest.fn(async () => ({})),
+  };
 
   return {
     connect: jest.fn(async () => true),
@@ -15,15 +25,10 @@ function mockPostgres () {
     onAny: fakeEmitter.onAny,
     query: jest.fn(async () => ([])),
     sql: sql,
-    table: (name) => ({
-      name,
-      one: jest.fn(async () => ({})),
-      find: jest.fn(async () => ([])),
-      insert: jest.fn(async () => ({})),
-      update: jest.fn(async () => ({})),
-      upsert: jest.fn(async () => ({})),
-      delete: jest.fn(async () => ({})),
-    }),
+    table: (name: string) => {
+      tableInterface.name = name;
+      return tableInterface;
+    },
     transaction: jest.fn(async () => ([])),
   }
 }
