@@ -1,5 +1,5 @@
 import { config as loadEnvFile } from 'dotenv';
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 
 const projectRoot = resolve(__dirname, '../../..');
 const getEnvFile = (rel_path: string) => `${projectRoot}/${rel_path}/.env`
